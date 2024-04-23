@@ -31,18 +31,35 @@ public class Parser {
     }
 
     public void setUp() throws IOException {
-
-        //Parse the HTML file using Jsoup
-        //TODO
-
-        // Extract data from the HTML
-        //TODO
-
-        // Iterate through each country div to extract country data
-        //TODO
+        try {
+            File htmlFile=new File("C:\\Users\\ASUS\\IdeaProjects\\Fourth-Assignment-HTML-Parser\\src\\Resources\\country-list.html");
+            Document htmlDoc=Jsoup.parse(htmlFile,"UTF-8");
+            Elements countriesHTML=htmlDoc.select(".country");
+            for (Element countryHTML : countriesHTML){
+                String name=countryHTML.select(".country-name").text();
+                String capital = countryHTML.select(".country-capital").text();
+                Double area=Double.parseDouble(countryHTML.select(".country-area").text());
+                int population=Integer.parseInt(countryHTML.select(".country-population").text());
+                Country country=new Country(name,capital,population,area);
+                countries.add(country);
+            }
+        }
+        catch (IOException exception){
+            System.out.println("Something went wrong");
+        }
     }
 
     public static void main(String[] args) {
-        //you can test your code here before you run the unit tests ;)
+        try {
+            Parser parser=new Parser();
+            parser.setUp();
+            for (Country country : countries){
+                System.out.println(country.toString());
+            }
+        }
+        catch (IOException exception){
+
+        }
+
     }
 }
