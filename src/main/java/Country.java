@@ -7,8 +7,10 @@ public class Country {
     private double area;
 
     public Country(String name, String capital, int population, double area) {
-        //TODO
-
+        this.name=name;
+        this.area=area;
+        this.population=population;
+        this.capital=capital;
     }
 
     public String getName() {
@@ -29,8 +31,8 @@ public class Country {
 
     @Override
     public String toString() {
-        //TODO
-        return "";
+        String info="Country: "+name+" ,capital: "+capital+" ,population: "+population+" ,area:"+area;
+        return info;
     }
 
     @Override
